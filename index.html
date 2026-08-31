@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="奇谭织梦——以中国民间文学为灵感的互动叙事游戏。"
+    />
+    <meta name="theme-color" content="#201b18" />
+    <title>奇谭织梦｜民间文学互动叙事</title>
+    <link rel="stylesheet" href="./src/css/style.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main-content">跳到主要内容</a>
+
+    <div class="site-shell">
+      <header class="site-header" aria-label="网站页眉">
+        <a class="brand" href="#/" data-route="home" aria-label="返回奇谭织梦首页">
+          <span class="brand__seal" aria-hidden="true">奇谭</span>
+          <span class="brand__name">奇谭织梦</span>
+        </a>
+        <p class="site-header__note">民间文学 · 互动新叙</p>
+      </header>
+
+      <main id="main-content" class="site-main">
+        <!-- 首页视图：两个按钮作为游戏模块的统一入口。 -->
+        <section id="home-view" class="view view--active" aria-labelledby="hero-title">
+          <div class="hero">
+            <div class="hero__content">
+              <p class="hero__eyebrow">
+                <span aria-hidden="true">卷一</span>
+                民间文学互动叙事
+              </p>
+              <h1 id="hero-title" class="hero__title">
+                <span>奇谭</span>
+                <span class="hero__title-accent">织梦</span>
+              </h1>
+              <div class="hero__divider" aria-hidden="true">
+                <span></span>
+                <i></i>
+                <span></span>
+              </div>
+              <p class="hero__description">
+                拾取散落的场景与人物，重织那些流传千年的相逢、离别与选择。
+              </p>
+            </div>
+
+            <div class="story-grid" aria-label="选择故事">
+              <button
+                class="story-card story-card--baishe"
+                type="button"
+                data-game="baishe"
+                aria-label="进入白蛇传"
+              >
+                <img
+                  class="story-card__image"
+                  src="./src/assets/images/baishe/S1.png"
+                  alt="白蛇传断桥初遇场景卡"
+                />
+                <span class="story-card__wash" aria-hidden="true"></span>
+                <span class="story-card__topline">
+                  <span class="story-card__index">壹</span>
+                  <span class="story-card__status">故事入口</span>
+                </span>
+                <span class="story-card__content">
+                  <span class="story-card__kicker">西湖烟雨 · 人妖情缘</span>
+                  <span class="story-card__title">白蛇传</span>
+                  <span class="story-card__summary">一伞相逢，几度离合</span>
+                  <span class="story-card__action">
+                    入梦
+                    <span aria-hidden="true">→</span>
+                  </span>
+                </span>
+              </button>
+
+              <button
+                class="story-card story-card--kongque"
+                type="button"
+                data-game="kongque"
+                aria-label="进入孔雀东南飞"
+              >
+                <img
+                  class="story-card__image"
+                  src="./src/assets/images/kongque/S12.png"
+                  alt="孔雀东南飞孔雀台场景卡"
+                />
+                <span class="story-card__wash" aria-hidden="true"></span>
+                <span class="story-card__topline">
+                  <span class="story-card__index">贰</span>
+                  <span class="story-card__status">故事入口</span>
+                </span>
+                <span class="story-card__content">
+                  <span class="story-card__kicker">磐石蒲苇 · 命运新织</span>
+                  <span class="story-card__title">孔雀东南飞</span>
+                  <span class="story-card__summary">五里徘徊，一诺不移</span>
+                  <span class="story-card__action">
+                    入梦
+                    <span aria-hidden="true">→</span>
+                  </span>
+                </span>
+              </button>
+            </div>
+
+            <p class="hero__hint">
+              <span aria-hidden="true">✦</span>
+              选择一卷，开启你的织梦之旅
+              <span aria-hidden="true">✦</span>
+            </p>
+          </div>
+        </section>
+
+        <!-- 游戏视图：任何后续游戏模块都必须渲染到 game-container。 -->
+        <section id="game-view" class="view" aria-labelledby="game-view-title" hidden>
+          <div class="game-view__toolbar">
+            <button class="back-button" type="button" data-route="home">
+              <span class="back-button__arrow" aria-hidden="true">←</span>
+              <span>返回故事卷</span>
+            </button>
+            <div class="game-view__heading">
+              <p class="game-view__eyebrow">奇谭织梦 · 故事卷</p>
+              <h2 id="game-view-title" class="game-view__title">载入中</h2>
+            </div>
+            <span class="game-view__seal" aria-hidden="true">织梦</span>
+          </div>
+
+          <div
+            id="game-container"
+            class="game-container"
+            aria-live="polite"
+            aria-busy="false"
+          ></div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <p>奇谭织梦 · 民间文学互动游戏实践项目</p>
+        <p>以数字新叙，续写千年文脉</p>
+      </footer>
+    </div>
+
+    <noscript>
+      <p class="noscript-message">请启用 JavaScript 以进入“奇谭织梦”互动页面。</p>
+    </noscript>
+
+    <script type="module" src="./src/js/main.js"></script>
+  </body>
+</html>
