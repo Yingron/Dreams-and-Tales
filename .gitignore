@@ -1,0 +1,17 @@
+# Dependencies and package-manager artifacts
+node_modules/
+
+# Local development and editor state
+.vscode/
+.idea/
+*.log
+.DS_Store
+Thumbs.db
+
+# Temporary QA output generated during local verification
+.qa/
+tmp/
+
+# Optional build output if a bundler is introduced later
+dist/
+build/
