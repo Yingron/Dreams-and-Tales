@@ -1,57 +1,413 @@
 {
   "gameId": "kongque",
   "gameName": "孔雀东南飞",
-  "version": 1,
+  "version": 2,
+  "tagVocabulary": [
+    "爱情忠贞",
+    "礼教压迫",
+    "家庭权力",
+    "婚姻压力",
+    "社会舆论",
+    "公共支持",
+    "个人尊严",
+    "婚姻自主",
+    "个人选择",
+    "命运改写",
+    "文化意象"
+  ],
+  "conflictTags": ["家庭权力", "礼教压迫", "婚姻压力", "社会舆论"],
+  "decisionTags": ["个人选择", "命运改写", "婚姻自主"],
+  "marks": [
+    { "id": "oath", "name": "磐石蒲苇", "setBy": ["E06", "E15"] },
+    { "id": "refusedPower", "name": "拒绝权贵", "setBy": ["E19"] },
+    { "id": "villagerSupport", "name": "乡民相助", "setBy": ["E20"] }
+  ],
+  "flagCatalog": [
+    { "id": "familyConflict", "name": "家庭冲突", "setBy": ["E02", "E04"] },
+    { "id": "divorced", "name": "已遣归", "setBy": ["E04"] },
+    { "id": "returnedHome", "name": "已归家", "setBy": ["E07"] },
+    { "id": "remarriageEngaged", "name": "被迫应婚", "setBy": ["E10"] },
+    { "id": "oathTaken", "name": "磐石蒲苇誓言", "setBy": ["E06"] },
+    { "id": "lanzhiDead", "name": "兰芝死亡", "setBy": ["E12"] },
+    { "id": "zhongqingDead", "name": "仲卿死亡", "setBy": ["E13"] },
+    { "id": "transformedBirds", "name": "化作双鸟", "setBy": ["E15"] },
+    { "id": "mediated", "name": "族老调解", "setBy": ["E16"] },
+    { "id": "fled", "name": "夫妻远走", "setBy": ["E17"] },
+    { "id": "motherAwakened", "name": "焦母醒悟", "setBy": ["E18"] },
+    { "id": "refusedPower", "name": "拒绝权贵", "setBy": ["E19"] },
+    { "id": "villagerSupport", "name": "乡民相助", "setBy": ["E20"] },
+    { "id": "selfReliant", "name": "兰芝自立", "setBy": ["E21"] },
+    { "id": "letters", "name": "传递书信", "setBy": ["E22"] }
+  ],
+  "acts": [
+    { "id": 1, "name": "相守", "function": "建立人物关系、生活状态与爱情基础" },
+    { "id": 2, "name": "冲突", "function": "引入焦母、礼教或家庭权力，使冲突显现" },
+    { "id": 3, "name": "离别", "function": "使冲突升级并建立后续承诺" },
+    { "id": 4, "name": "抉择", "function": "提供逼婚、拒婚、调解或远走选项" },
+    { "id": 5, "name": "结局", "function": "根据前四幕状态触发悲剧、和解或新生" }
+  ],
   "scenes": [
-    { "id": "S01", "name": "焦家庭院", "image": "../images/kongque/S01.png" },
-    { "id": "S02", "name": "兰芝织房", "image": "../images/kongque/S02.png" },
-    { "id": "S03", "name": "焦母堂前", "image": "../images/kongque/S03.png" },
-    { "id": "S04", "name": "焦家门前", "image": "../images/kongque/S04.png" },
-    { "id": "S05", "name": "归家长路", "image": "../images/kongque/S05.png" },
-    { "id": "S06", "name": "刘家庭院", "image": "../images/kongque/S06.png" },
-    { "id": "S07", "name": "太守府", "image": "../images/kongque/S07.png" },
-    { "id": "S08", "name": "婚礼厅堂", "image": "../images/kongque/S08.png" },
-    { "id": "S09", "name": "庭院水池", "image": "../images/kongque/S09.png" },
-    { "id": "S10", "name": "庭院树下", "image": "../images/kongque/S10.png" },
-    { "id": "S11", "name": "合葬墓地", "image": "../images/kongque/S11.png" },
-    { "id": "S12", "name": "孔雀台", "image": "../images/kongque/S12.png" }
+    { "id": "S01", "name": "焦家庭院", "image": "../images/kongque/S01.png", "description": "婚后生活空间，表面平静，内部受家长权力支配。青砖、织物、低垂竹影。", "source": "core", "tags": [], "allowedEvents": ["E01", "E03", "E16"] },
+    { "id": "S02", "name": "兰芝织房", "image": "../images/kongque/S02.png", "description": "兰芝勤劳与压抑生活的集中体现。织机、灯火、未尽的布匹。", "source": "core", "tags": [], "allowedEvents": ["E01", "E21"] },
+    { "id": "S03", "name": "焦母堂前", "image": "../images/kongque/S03.png", "description": "家庭权威与礼教秩序的象征。", "source": "core", "tags": [], "allowedEvents": ["E02", "E03", "E04", "E16", "E18"] },
+    { "id": "S04", "name": "焦家门前", "image": "../images/kongque/S04.png", "description": "从家庭成员变为“被遣之妇”的边界空间。车马、门槛、回望。", "source": "core", "tags": [], "allowedEvents": ["E05", "E06", "E07", "E22"] },
+    { "id": "S05", "name": "归家长路", "image": "../images/kongque/S05.png", "description": "离别、徘徊和孔雀意象的空间。远山、岔路、东南飞鸟。", "source": "core", "tags": [], "allowedEvents": ["E06", "E07", "E17", "E22"] },
+    { "id": "S06", "name": "刘家庭院", "image": "../images/kongque/S06.png", "description": "娘家既是暂时庇护，也是再次施压之处。", "source": "core", "tags": [], "allowedEvents": ["E08", "E09", "E10", "E19", "E20", "E22"] },
+    { "id": "S07", "name": "太守府", "image": "../images/kongque/S07.png", "description": "权势、财富与婚姻交易的象征。朱门、仪仗、华服。", "source": "core", "tags": [], "allowedEvents": ["E08"] },
+    { "id": "S08", "name": "婚礼厅堂", "image": "../images/kongque/S08.png", "description": "外在喜庆与人物内心悲剧形成反差。红绸、灯烛、空座。", "source": "core", "tags": [], "allowedEvents": ["E10", "E11", "E19"] },
+    { "id": "S09", "name": "庭院水池", "image": "../images/kongque/S09.png", "description": "兰芝作出最终选择的悲剧场所。冷月、水波、遗落绣鞋。", "source": "core", "tags": ["文化意象"], "allowedEvents": ["E12"] },
+    { "id": "S10", "name": "庭院树下", "image": "../images/kongque/S10.png", "description": "仲卿徘徊与殉情的悲剧场所。枯枝、长影、回首庭院。", "source": "core", "tags": ["文化意象"], "allowedEvents": ["E13"] },
+    { "id": "S11", "name": "合葬墓地", "image": "../images/kongque/S11.png", "description": "人间悲剧结束、传说记忆开始之处。松柏、墓碑、交颈鸟。", "source": "core", "tags": ["文化意象"], "allowedEvents": ["E14", "E15"] },
+    { "id": "S12", "name": "孔雀台", "image": "../images/kongque/S12.png", "description": "通关后解锁的象征性幻想空间。孔雀纹、云气、晨光。", "source": "legend", "tags": ["文化意象"], "allowedEvents": ["E15"] }
   ],
   "characters": [
-    { "id": "C01", "name": "刘兰芝", "image": "../images/kongque/C01.png" },
-    { "id": "C02", "name": "焦仲卿", "image": "../images/kongque/C02.png" },
-    { "id": "C03", "name": "焦母", "image": "../images/kongque/C03.png" },
-    { "id": "C04", "name": "刘母", "image": "../images/kongque/C04.png" },
-    { "id": "C05", "name": "刘兄", "image": "../images/kongque/C05.png" },
-    { "id": "C06", "name": "县令媒人", "image": "../images/kongque/C06.png" },
-    { "id": "C07", "name": "太守媒人", "image": "../images/kongque/C07.png" },
-    { "id": "C08", "name": "太守之子", "image": "../images/kongque/C08.png" },
-    { "id": "C09", "name": "邻里乡民", "image": "../images/kongque/C09.png" },
-    { "id": "C10", "name": "孔雀双鸟", "image": "../images/kongque/C10.png" },
-    { "id": "C11", "name": "智者／族老", "image": "../images/kongque/C11.png" },
-    { "id": "C12", "name": "年幼侍女", "image": "../images/kongque/C12.png" }
+    { "id": "C01", "name": "刘兰芝", "image": "../images/kongque/C01.png", "description": "聪慧、勤劳、坚贞且重视尊严。核心主角，几乎所有主线与自主选择结局的必要角色。", "source": "core", "tags": ["个人尊严", "婚姻自主", "个人选择"] },
+    { "id": "C02", "name": "焦仲卿", "image": "../images/kongque/C02.png", "description": "忠于爱情，但受母权、孝道和社会规范束缚。触发求情、誓言、诀别、远走与殉情。", "source": "core", "tags": ["爱情忠贞"] },
+    { "id": "C03", "name": "焦母", "image": "../images/kongque/C03.png", "description": "专断强势的封建家长。制造主冲突，也可通过“醒悟”形成和解分支。", "source": "core", "tags": ["家庭权力", "礼教压迫"] },
+    { "id": "C04", "name": "刘母", "image": "../images/kongque/C04.png", "description": "疼爱女儿，但缺乏对抗家族压力的能力。娘家情节的缓冲者，可提供安慰或劝婚。", "source": "core", "tags": [] },
+    { "id": "C05", "name": "刘兄", "image": "../images/kongque/C05.png", "description": "重视权势、财富和家族利益。逼婚主因，推动悲剧进入婚礼阶段。", "source": "core", "tags": ["婚姻压力", "家庭权力"] },
+    { "id": "C06", "name": "县令媒人", "image": "../images/kongque/C06.png", "description": "世俗婚姻安排的传递者。触发第一次说媒，提示兰芝受到外部关注。", "source": "core", "tags": ["婚姻压力", "社会舆论"] },
+    { "id": "C07", "name": "太守媒人", "image": "../images/kongque/C07.png", "description": "权贵婚姻交易的执行者。触发太守府婚事及时间压力。", "source": "core", "tags": ["婚姻压力"] },
+    { "id": "C08", "name": "太守之子", "image": "../images/kongque/C08.png", "description": "被安排的再婚对象，构成婚姻冲突，不简单塑造成绝对恶人。", "source": "core", "tags": ["婚姻压力"] },
+    { "id": "C09", "name": "邻里乡民", "image": "../images/kongque/C09.png", "description": "社会舆论及公共见证者。可加强压力，也可在改写线中转化为互助力量。", "source": "core", "tags": ["社会舆论", "公共支持"] },
+    { "id": "C10", "name": "孔雀双鸟", "image": "../images/kongque/C10.png", "description": "焦、刘爱情与传说记忆的象征。用于尾声、图鉴和神话圆满结局。", "source": "legend", "tags": ["爱情忠贞", "文化意象"] },
+    { "id": "C11", "name": "智者／族老", "image": "../images/kongque/C11.png", "description": "游戏新增的调解角色。解锁族老调解、家庭协商等非悲剧路线。", "source": "added", "tags": ["公共支持", "命运改写"] },
+    { "id": "C12", "name": "年幼侍女", "image": "../images/kongque/C12.png", "description": "兰芝的陪伴者与叙事见证人。传话、补充人物内心、给玩家提供线索。", "source": "core", "tags": [] }
   ],
   "events": [
-    { "id": "E01", "name": "昼夜织布", "image": "../images/kongque/E01.png" },
-    { "id": "E02", "name": "堂前受责", "image": "../images/kongque/E02.png" },
-    { "id": "E03", "name": "仲卿求情", "image": "../images/kongque/E03.png" },
-    { "id": "E04", "name": "被迫休妻", "image": "../images/kongque/E04.png" },
-    { "id": "E05", "name": "严妆辞别", "image": "../images/kongque/E05.png" },
-    { "id": "E06", "name": "磐石蒲苇之誓", "image": "../images/kongque/E06.png" },
-    { "id": "E07", "name": "兰芝归家", "image": "../images/kongque/E07.png" },
-    { "id": "E08", "name": "媒人说亲", "image": "../images/kongque/E08.png" },
-    { "id": "E09", "name": "兄长逼嫁", "image": "../images/kongque/E09.png" },
-    { "id": "E10", "name": "被迫应婚", "image": "../images/kongque/E10.png" },
-    { "id": "E11", "name": "仲卿诀别", "image": "../images/kongque/E11.png" },
-    { "id": "E12", "name": "举身赴清池", "image": "../images/kongque/E12.png" },
-    { "id": "E13", "name": "自挂东南枝", "image": "../images/kongque/E13.png" },
-    { "id": "E14", "name": "两家合葬", "image": "../images/kongque/E14.png" },
-    { "id": "E15", "name": "化作双鸟", "image": "../images/kongque/E15.png" },
-    { "id": "E16", "name": "族老调解", "image": "../images/kongque/E16.png" },
-    { "id": "E17", "name": "夫妻远走", "image": "../images/kongque/E17.png" },
-    { "id": "E18", "name": "焦母醒悟", "image": "../images/kongque/E18.png" },
-    { "id": "E19", "name": "拒绝权贵", "image": "../images/kongque/E19.png" },
-    { "id": "E20", "name": "乡民相助", "image": "../images/kongque/E20.png" },
-    { "id": "E21", "name": "兰芝自立", "image": "../images/kongque/E21.png" },
-    { "id": "E22", "name": "传递书信", "image": "../images/kongque/E22.png" }
-  ]
+    { "id": "E01", "name": "昼夜织布", "image": "../images/kongque/E01.png", "description": "兰芝辛勤劳作，仍无法获得焦母认可。", "source": "core", "tags": [], "allowedScenes": ["S01", "S02"], "requiredCharacters": ["C01"], "prerequisites": { "events": [], "anyEvents": [], "flags": [], "forbiddenFlags": [] }, "effects": { "flags": [], "marks": [], "deaths": [] } },
+    { "id": "E02", "name": "堂前受责", "image": "../images/kongque/E02.png", "description": "焦母责备兰芝，家庭矛盾公开化。", "source": "core", "tags": ["家庭权力", "礼教压迫"], "allowedScenes": ["S03"], "requiredCharacters": ["C01", "C03"], "prerequisites": { "events": [], "anyEvents": [], "flags": [], "forbiddenFlags": [] }, "effects": { "flags": ["familyConflict"], "marks": [], "deaths": [] } },
+    { "id": "E03", "name": "仲卿求情", "image": "../images/kongque/E03.png", "description": "仲卿向母亲请求留下兰芝。", "source": "core", "tags": ["家庭权力"], "allowedScenes": ["S01", "S03"], "requiredCharacters": ["C02"], "prerequisites": { "events": [], "anyEvents": [], "flags": [], "forbiddenFlags": [] }, "effects": { "flags": [], "marks": [], "deaths": [] } },
+    { "id": "E04", "name": "被迫休妻", "image": "../images/kongque/E04.png", "description": "焦母命令仲卿将兰芝遣归。", "source": "core", "tags": ["家庭权力", "礼教压迫"], "allowedScenes": ["S03"], "requiredCharacters": ["C02", "C03"], "prerequisites": { "events": [], "anyEvents": [], "flags": [], "forbiddenFlags": [] }, "effects": { "flags": ["familyConflict", "divorced"], "marks": [], "deaths": [] } },
+    { "id": "E05", "name": "严妆辞别", "image": "../images/kongque/E05.png", "description": "兰芝从容梳妆，与焦家众人告别。", "source": "core", "tags": ["个人尊严"], "allowedScenes": ["S04"], "requiredCharacters": ["C01"], "prerequisites": { "events": ["E04"], "anyEvents": [], "flags": [], "forbiddenFlags": [] }, "effects": { "flags": [], "marks": [], "deaths": [] } },
+    { "id": "E06", "name": "磐石蒲苇之誓", "image": "../images/kongque/E06.png", "description": "二人约定永不相负。", "source": "core", "tags": ["爱情忠贞", "文化意象"], "allowedScenes": ["S04", "S05"], "requiredCharacters": ["C01", "C02"], "prerequisites": { "events": [], "anyEvents": [], "flags": [], "forbiddenFlags": ["lanzhiDead", "zhongqingDead"] }, "effects": { "flags": ["oathTaken"], "marks": ["oath"], "deaths": [] } },
+    { "id": "E07", "name": "兰芝归家", "image": "../images/kongque/E07.png", "description": "兰芝回到娘家，承受新的社会压力。", "source": "core", "tags": ["婚姻压力"], "allowedScenes": ["S04", "S05"], "requiredCharacters": ["C01"], "prerequisites": { "events": ["E04"], "anyEvents": [], "flags": [], "forbiddenFlags": [] }, "effects": { "flags": ["returnedHome"], "marks": [], "deaths": [] } },
+    { "id": "E08", "name": "媒人说亲", "image": "../images/kongque/E08.png", "description": "县令或太守派媒人登门求婚。", "source": "core", "tags": ["婚姻压力", "社会舆论"], "allowedScenes": ["S06", "S07"], "requiredCharacters": ["C01"], "prerequisites": { "events": [], "anyEvents": [], "flags": [], "forbiddenFlags": [], "anyOf": [{ "events": ["E07"] }, { "flags": ["divorced"] }] }, "effects": { "flags": [], "marks": [], "deaths": [] } },
+    { "id": "E09", "name": "兄长逼嫁", "image": "../images/kongque/E09.png", "description": "刘兄以家族利益要求兰芝接受婚事。", "source": "core", "tags": ["家庭权力", "婚姻压力"], "allowedScenes": ["S06"], "requiredCharacters": ["C01", "C05"], "prerequisites": { "events": [], "anyEvents": [], "flags": [], "forbiddenFlags": [], "anyOf": [{ "events": ["E07"] }, { "flags": ["divorced"] }] }, "effects": { "flags": [], "marks": [], "deaths": [] } },
+    { "id": "E10", "name": "被迫应婚", "image": "../images/kongque/E10.png", "description": "兰芝表面接受婚事，实际作出最后决定。", "source": "core", "tags": ["婚姻压力"], "allowedScenes": ["S06", "S08"], "requiredCharacters": ["C01"], "prerequisites": { "events": [], "anyEvents": ["E08", "E09"], "flags": [], "forbiddenFlags": [] }, "effects": { "flags": ["remarriageEngaged"], "marks": [], "deaths": [] } },
+    { "id": "E11", "name": "仲卿诀别", "image": "../images/kongque/E11.png", "description": "仲卿得知再嫁消息，与兰芝最后相见。", "source": "core", "tags": ["爱情忠贞"], "allowedScenes": ["S08"], "requiredCharacters": ["C01", "C02"], "prerequisites": { "events": ["E10"], "anyEvents": [], "flags": [], "forbiddenFlags": [] }, "effects": { "flags": [], "marks": [], "deaths": [] } },
+    { "id": "E12", "name": "举身赴清池", "image": "../images/kongque/E12.png", "description": "兰芝投水殉情。", "source": "core", "tags": ["爱情忠贞", "文化意象"], "allowedScenes": ["S09"], "requiredCharacters": ["C01"], "prerequisites": { "events": ["E10"], "anyEvents": [], "flags": [], "forbiddenFlags": ["lanzhiDead"] }, "effects": { "flags": ["lanzhiDead"], "marks": [], "deaths": ["C01"] } },
+    { "id": "E13", "name": "自挂东南枝", "image": "../images/kongque/E13.png", "description": "仲卿追随兰芝殉情。", "source": "core", "tags": ["爱情忠贞", "文化意象"], "allowedScenes": ["S10"], "requiredCharacters": ["C02"], "prerequisites": { "events": [], "anyEvents": [], "flags": ["lanzhiDead"], "forbiddenFlags": ["zhongqingDead"] }, "effects": { "flags": ["zhongqingDead"], "marks": [], "deaths": ["C02"] } },
+    { "id": "E14", "name": "两家合葬", "image": "../images/kongque/E14.png", "description": "两家悔悟，将二人合葬。", "source": "core", "tags": ["文化意象"], "allowedScenes": ["S11"], "requiredCharacters": [], "prerequisites": { "events": ["E12", "E13"], "anyEvents": [], "flags": [], "forbiddenFlags": [] }, "effects": { "flags": [], "marks": [], "deaths": [] } },
+    { "id": "E15", "name": "化作双鸟", "image": "../images/kongque/E15.png", "description": "二人化作相向而鸣的双鸟，爱情成为传说。", "source": "legend", "tags": ["爱情忠贞", "文化意象"], "allowedScenes": ["S11", "S12"], "requiredCharacters": ["C10"], "prerequisites": { "events": [], "anyEvents": [], "flags": [], "forbiddenFlags": [], "anyOf": [{ "events": ["E14"] }, { "marks": ["refusedPower", "villagerSupport"] }] }, "effects": { "flags": ["transformedBirds"], "marks": ["oath"], "deaths": [] } },
+    { "id": "E16", "name": "族老调解", "image": "../images/kongque/E16.png", "description": "族老介入，使冲突进入协商。", "source": "added", "tags": ["公共支持", "命运改写"], "allowedScenes": ["S01", "S03"], "requiredCharacters": ["C03", "C11"], "prerequisites": { "events": [], "anyEvents": [], "flags": ["familyConflict"], "forbiddenFlags": [] }, "effects": { "flags": ["mediated"], "marks": [], "deaths": [] } },
+    { "id": "E17", "name": "夫妻远走", "image": "../images/kongque/E17.png", "description": "二人离开故乡，自主选择共同生活。", "source": "added", "tags": ["命运改写", "个人选择", "爱情忠贞"], "allowedScenes": ["S05"], "requiredCharacters": ["C01", "C02"], "prerequisites": { "events": [], "anyEvents": [], "flags": [], "forbiddenFlags": ["lanzhiDead", "zhongqingDead"] }, "effects": { "flags": ["fled"], "marks": [], "deaths": [] } },
+    { "id": "E18", "name": "焦母醒悟", "image": "../images/kongque/E18.png", "description": "焦母理解兰芝并撤回遣归决定。", "source": "added", "tags": ["命运改写", "家庭权力"], "allowedScenes": ["S03"], "requiredCharacters": ["C01", "C03"], "prerequisites": { "events": [], "anyEvents": [], "flags": ["familyConflict"], "forbiddenFlags": ["lanzhiDead", "zhongqingDead"] }, "effects": { "flags": ["motherAwakened"], "marks": [], "deaths": [] } },
+    { "id": "E19", "name": "拒绝权贵", "image": "../images/kongque/E19.png", "description": "兰芝公开拒绝太守家的婚事。", "source": "added", "tags": ["婚姻自主", "个人尊严", "个人选择"], "allowedScenes": ["S06", "S08"], "requiredCharacters": ["C01"], "prerequisites": { "events": [], "anyEvents": ["E08", "E09"], "flags": [], "forbiddenFlags": ["lanzhiDead"] }, "effects": { "flags": ["refusedPower"], "marks": ["refusedPower"], "deaths": [] } },
+    { "id": "E20", "name": "乡民相助", "image": "../images/kongque/E20.png", "description": "乡民共同反对强迫婚姻。", "source": "added", "tags": ["公共支持", "社会舆论", "命运改写"], "allowedScenes": ["S06"], "requiredCharacters": ["C01", "C09"], "prerequisites": { "events": [], "anyEvents": ["E08", "E09"], "flags": [], "forbiddenFlags": ["lanzhiDead"] }, "effects": { "flags": ["villagerSupport"], "marks": ["villagerSupport"], "deaths": [] } },
+    { "id": "E21", "name": "兰芝自立", "image": "../images/kongque/E21.png", "description": "兰芝离开两家，以织艺建立独立生活。", "source": "added", "tags": ["婚姻自主", "个人尊严", "命运改写"], "allowedScenes": ["S02"], "requiredCharacters": ["C01"], "prerequisites": { "events": [], "anyEvents": ["E19"], "flags": [], "forbiddenFlags": ["lanzhiDead"] }, "effects": { "flags": ["selfReliant"], "marks": [], "deaths": [] } },
+    { "id": "E22", "name": "传递书信", "image": "../images/kongque/E22.png", "description": "侍女帮助焦、刘二人交换消息。", "source": "added", "tags": ["爱情忠贞", "个人选择"], "allowedScenes": ["S04", "S05", "S06"], "requiredCharacters": ["C12"], "prerequisites": { "events": [], "anyEvents": [], "flags": [], "forbiddenFlags": [] }, "effects": { "flags": ["letters"], "marks": [], "deaths": [] } }
+  ],
+  "combos": [
+    { "scene": "S02", "characters": ["C01"], "event": "E01", "text": "鸡鸣入机织，夜夜不得息。兰芝勤勉持家，却始终得不到焦母的认可。", "source": "core" },
+    { "scene": "S03", "characters": ["C03", "C01"], "event": "E02", "text": "焦母端坐堂前，责怪兰芝不守礼节。兰芝虽心怀委屈，仍以礼相答。", "source": "core" },
+    { "scene": "S03", "characters": ["C02", "C03"], "event": "E03", "text": "仲卿在母亲面前为妻子求情，但焦母态度坚决，命他将兰芝遣归。", "source": "core" },
+    { "scene": "S04", "characters": ["C01", "C02"], "event": "E06", "text": "“君当作磐石，妾当作蒲苇。蒲苇纫如丝，磐石无转移。”二人在离别处许下不变的誓言。", "source": "core" },
+    { "scene": "S06", "characters": ["C05", "C01"], "event": "E09", "text": "兄长以家族利益相逼。兰芝孤立无援，只得暂且答应太守家的婚事。", "source": "core" },
+    { "scene": "S09", "characters": ["C01"], "event": "E12", "text": "婚礼将至，兰芝脱下绣鞋，走向清池，以生命守住自己的誓言。", "source": "core" },
+    { "scene": "S10", "characters": ["C02"], "event": "E13", "text": "仲卿在庭树下久久徘徊，最终走向东南枝，追随兰芝而去。", "source": "core" },
+    { "scene": "S11", "characters": ["C01", "C02", "C10"], "event": "E15", "text": "两家将二人合葬。墓旁双鸟交颈而鸣，世人由此记住了他们忠贞的爱情。", "source": "core" },
+    { "scene": "S03", "characters": ["C03", "C11"], "event": "E16", "text": "族老调解家庭矛盾，开启“破礼重圆”路线。", "source": "added" },
+    { "scene": "S03", "characters": ["C03", "C01"], "event": "E18", "text": "焦母承认兰芝的勤劳与尊严，撤回遣归命令。", "source": "added" },
+    { "scene": "S06", "characters": ["C01", "C05"], "event": "E19", "text": "兰芝拒绝权贵，提升婚姻自主主题分。", "source": "added" },
+    { "scene": "S05", "characters": ["C01", "C02"], "event": "E17", "text": "二人离开故乡，触发“磐石蒲苇”自由结局。", "source": "added" },
+    { "scene": "S06", "characters": ["C01", "C09"], "event": "E20", "text": "乡民由旁观者转为援助者，阻止强迫婚姻。", "source": "added" },
+    { "scene": "S12", "characters": ["C01", "C02", "C10"], "event": "E15", "text": "在孔雀台触发神话式重逢结局。", "source": "added" },
+    { "scene": "S02", "characters": ["C01"], "event": "E21", "text": "兰芝凭织艺开始独立生活，触发“兰芝新生”。", "source": "added" }
+  ],
+  "softHints": [
+    { "id": "h-weave-location", "type": "eventNotInScene", "event": "E01", "badScenes": ["S07"], "text": "人物和地点似乎并不匹配：织布更可能发生在焦家或兰芝织房。" },
+    { "id": "h-burial-early", "type": "missingPrerequisite", "event": "E14", "badScenes": ["S08"], "text": "合葬是悲剧之后的尾声；故事中尚未发生两位主角的死亡。" },
+    { "id": "h-flee-partner", "type": "missingCharacter", "event": "E17", "badScenes": ["S05"], "text": "远走需要两人共同作出选择，请加入焦仲卿。" },
+    { "id": "h-death-too-early", "type": "actTooEarly", "event": "E12", "maxBadAct": 2, "text": "这一结局来得太早。先交代遣归、逼婚或诀别，故事会更完整。" }
+  ],
+  "endings": [
+    {
+      "id": "hidden",
+      "name": "孔雀重飞",
+      "priority": 1,
+      "hidden": true,
+      "condition": { "events": [], "anyEvents": [], "scenes": ["S12"], "anyScenes": [], "characters": [], "anyCharacters": [], "marks": ["oath", "refusedPower", "villagerSupport"], "flags": [], "forbiddenFlags": ["lanzhiDead", "zhongqingDead"], "minScore": 90, "minCulture": 0 },
+      "text": "玩家在孔雀台重新排列关键事件，使双鸟不再只是死后的象征，而成为主动飞向自由的意象。该结局是完成经典线后获得的想象性补偿。"
+    },
+    {
+      "id": "independence",
+      "name": "兰芝新生——独立选择",
+      "priority": 2,
+      "hidden": false,
+      "condition": { "events": ["E19", "E21"], "anyEvents": [], "scenes": [], "anyScenes": [], "characters": [], "anyCharacters": [], "marks": [], "flags": [], "forbiddenFlags": ["lanzhiDead"], "minScore": 0, "minCulture": 0 },
+      "text": "这一次，兰芝不再让别人替她决定命运。她带着织机离开故乡，以自己的双手开始新的生活。她的价值，不再由任何一场婚姻定义。"
+    },
+    {
+      "id": "reconcile",
+      "name": "破礼重圆——家庭和解",
+      "priority": 3,
+      "hidden": false,
+      "condition": { "events": ["E18"], "anyEvents": ["E16", "E20"], "scenes": [], "anyScenes": [], "characters": [], "anyCharacters": [], "marks": [], "flags": [], "forbiddenFlags": ["lanzhiDead", "zhongqingDead"], "minScore": 0, "minCulture": 0 },
+      "text": "焦母终于明白，家族的体面不应建立在拆散有情人之上。堂前旧规未曾一夜消失，但这个家庭第一次愿意倾听兰芝的声音。"
+    },
+    {
+      "id": "flee",
+      "name": "磐石蒲苇——远走自由",
+      "priority": 4,
+      "hidden": false,
+      "condition": { "events": ["E06", "E17"], "anyEvents": [], "scenes": [], "anyScenes": [], "characters": ["C01", "C02"], "anyCharacters": [], "marks": [], "flags": [], "forbiddenFlags": ["lanzhiDead", "zhongqingDead", "motherAwakened"], "minScore": 0, "minCulture": 0 },
+      "text": "他们没有等到所有人的理解，却终于能够依照自己的心意共同生活。故乡渐远，誓言仍在：蒲苇纫如丝，磐石无转移。"
+    },
+    {
+      "id": "classic",
+      "name": "孔雀东南飞——经典悲剧",
+      "priority": 5,
+      "hidden": false,
+      "condition": { "events": ["E04", "E12", "E13"], "anyEvents": ["E09", "E10"], "scenes": [], "anyScenes": [], "characters": [], "anyCharacters": [], "marks": [], "flags": [], "forbiddenFlags": [], "minScore": 0, "minCulture": 10 },
+      "text": "孔雀东南飞，五里一徘徊。二人的生命虽然消逝，忠贞的爱情却化作永不分离的双鸟。后人记住这场悲剧，也记住了被礼教阻隔的真心。"
+    },
+    {
+      "id": "wealth",
+      "name": "富贵空梦——逻辑成立但偏离主题",
+      "priority": 6,
+      "hidden": false,
+      "condition": { "events": ["E10"], "anyEvents": [], "scenes": [], "anyScenes": ["S07", "S08"], "characters": [], "anyCharacters": ["C08"], "marks": [], "flags": [], "forbiddenFlags": ["lanzhiDead", "refusedPower", "selfReliant"], "minScore": 0, "minCulture": 0 },
+      "text": "婚礼极尽奢华，兰芝却没有露出笑容。你完成了一场婚礼，却没有完成一个关于幸福的故事。也许，真正需要被放入故事中的，是人物自己的选择。"
+    }
+  ],
+  "levels": [
+    {
+      "id": 1,
+      "name": "机杼情深",
+      "acts": 3,
+      "passScore": 60,
+      "positioning": "新手教学关，用夫妻日常、仲卿维护兰芝和离别誓言建立人物关系。",
+      "pool": { "scenes": ["S01", "S02", "S03", "S04"], "characters": ["C01", "C02", "C03"], "events": ["E01", "E02", "E03", "E06"], "lockedEvents": [] },
+      "goals": { "allActsValid": true, "cooccur": [["C01", "C02"]], "tags": ["爱情忠贞"] },
+      "preset": [{ "act": 1, "scene": "S02" }],
+      "tutorial": [
+        { "text": "第一幕预置 S02，指引玩家拖入 C01 与 E01。", "goal": { "act": 1, "characters": ["C01"], "events": ["E01"] } },
+        { "text": "第二幕只提示“谁会替兰芝求情”，让玩家自主选择人物。", "goal": { "act": 2, "events": ["E03"] } },
+        { "text": "第三幕开放全部卡片，并要求玩家根据场景完成组合。", "goal": { "act": 3 } },
+        { "text": "首次出现错误时暂停计分，演示“查看原因—撤回—替换”的操作。", "goal": { "submitted": true } }
+      ],
+      "recommended": [
+        { "act": 1, "scene": "S02", "characters": ["C01"], "event": "E01", "note": "交代兰芝的生活状态" },
+        { "act": 2, "scene": "S03", "characters": ["C02", "C03"], "event": "E03", "note": "表现仲卿的维护与家庭阻力" },
+        { "act": 3, "scene": "S04", "characters": ["C01", "C02"], "event": "E06", "note": "完成爱情主题表达" }
+      ],
+      "challenge": "三幕按“劳作—求情—誓言”的因果顺序排列，且不使用三级提示。",
+      "threeStar": {
+        "ordering": [
+          { "before": "E01", "afterAny": ["E03"] },
+          { "before": "E03", "afterAny": ["E06"] }
+        ],
+        "noLevel3Hint": true
+      },
+      "failHints": [
+        "若 E06 缺少两位主角，提示“誓言需要相爱的双方共同在场”。",
+        "若将 E01 放在 S03，提示“织机并不在堂前，试试更私密的劳作空间”。"
+      ],
+      "rewards": { "cards": ["S05", "C05", "E04", "E05", "E07"], "codex": ["焦仲卿"] }
+    },
+    {
+      "id": 2,
+      "name": "堂前风起",
+      "acts": 4,
+      "passScore": 70,
+      "positioning": "冲突与因果教学关，从焦家权力冲突推进到兰芝被遣归。",
+      "pool": { "scenes": ["S01", "S02", "S03", "S04", "S05", "S06"], "characters": ["C01", "C02", "C03", "C04", "C05", "C12"], "events": ["E01", "E02", "E03", "E04", "E05", "E06", "E07", "E08", "E09", "E22"], "lockedEvents": [] },
+      "goals": { "allActsValid": true, "flow": ["家庭冲突", "求情失败", "遣归辞别", "娘家压力"], "flowStages": [["E02"], ["E03", "E04"], ["E04", "E05"], ["E07", "E08", "E09"]], "mustIncludeCharacters": ["C03", "C05"] },
+      "recommended": [
+        { "act": 1, "scene": "S03", "characters": ["C01", "C03"], "event": "E02", "note": "建立焦母对兰芝的家庭权力压力" },
+        { "act": 2, "scene": "S03", "characters": ["C02", "C03"], "event": "E04", "note": "遣归决定是本关枢纽：E05 辞别、E07 归家、E08/E09 娘家压力都以它为前置" },
+        { "act": 3, "scene": "S04", "characters": ["C01", "C02"], "event": "E05/E06", "note": "E05 表现离别尊严（三星挑战需要），E06 完成爱情誓言" },
+        { "act": 4, "scene": "S06", "characters": ["C01", "C05"], "event": "E08/E09", "note": "娘家与社会婚姻压力，需在 E04 遣归之后" }
+      ],
+      "notes": "E04 遣归是第三、四幕的前置：E05/E07/E08/E09 都要求先发生 E04。若第二幕想先表现 E03 求情，请把 E04 挪到第三幕并把该幕场景改为堂前（S03），第四幕再接 E08/E09。第三幕允许 E05 或 E06：E05 增加“个人尊严”分（三星挑战需要），E06 增加“爱情忠贞”和文化还原分。用 E22 传递书信连接第三、四幕，可获得 3 分逻辑奖励。",
+      "scoreBonuses": [{ "event": "E22", "dimension": "logic", "points": 3 }],
+      "challenge": "同时命中“家庭权力”“个人尊严”“婚姻压力”三个标签。",
+      "threeStar": {
+        "tags": ["家庭权力", "个人尊严", "婚姻压力"],
+        "noLevel3Hint": true
+      },
+      "failHints": [
+        "未发生 E04 即安排 E05，提示“辞别之前还缺少使兰芝离开焦家的决定”。",
+        "未交代归家便安排刘兄逼嫁，提示“先让兰芝回到刘家，新的压力才有发生的空间”。"
+      ],
+      "rewards": { "cards": ["S07", "S08", "C06", "C07", "C08", "E10", "E11"], "codex": ["磐石与蒲苇"] }
+    },
+    {
+      "id": 3,
+      "name": "孔雀东南飞",
+      "acts": 5,
+      "passScore": 75,
+      "positioning": "经典主线复原关，完整呈现遣归、逼嫁、诀别与悲剧结局。",
+      "pool": { "scenes": ["S03", "S04", "S05", "S06", "S07", "S08", "S09", "S10", "S11"], "characters": ["C01", "C02", "C03", "C04", "C05", "C06", "C07", "C08", "C09", "C10", "C12"], "events": ["E03", "E04", "E05", "E06", "E07", "E08", "E09", "E10", "E11", "E12", "E13", "E14", "E15", "E22"], "lockedEvents": [] },
+      "goals": { "allActsValid": true, "ordering": [{ "before": "E04", "afterAny": ["E09", "E10"] }, { "before": "E10", "after": ["E12"] }, { "before": "E12", "after": ["E13"] }], "endings": ["classic"] },
+      "recommended": [
+        { "act": 1, "scene": "S03", "characters": ["C02", "C03"], "event": "E04", "note": "可加入 C01 作为冲突承受者" },
+        { "act": 2, "scene": "S04/S05", "characters": ["C01", "C02"], "event": "E06", "note": "誓言是三星挑战所需意象；此处也可用 E07 交代归家" },
+        { "act": 3, "scene": "S06", "characters": ["C01", "C05"], "event": "E09", "note": "娘家逼嫁需在 E04 遣归之后；也可用 E08 媒人说亲（限 S06/S07）" },
+        { "act": 4, "scene": "S06/S08", "characters": ["C01"], "event": "E10", "note": "被迫应婚是 E12 赴清池的硬性前置，必须在 E08/E09 之后" },
+        { "act": 5, "scene": "S09", "characters": ["C01"], "event": "E12", "note": "可加入 C12 作为见证者；仲卿自挂（E13）与合葬化鸟在结局演出中自动追加" }
+      ],
+      "autoAppend": [
+        { "after": ["E12"], "events": ["E13"] },
+        { "after": ["E12", "E13"], "events": ["E14", "E15"] }
+      ],
+      "bonus": "若玩家在前面使用 E11 仲卿诀别，可获得额外完整度分。",
+      "scoreBonuses": [{ "event": "E11", "dimension": "completeness", "points": 3 }],
+      "challenge": "文化还原度达到 15 分，并在故事中使用 E06、E11 或 E15 所代表的至少两个经典意象。",
+      "threeStar": {
+        "minCulture": 15,
+        "imageryEvents": ["E06", "E11", "E15"],
+        "minImagery": 2,
+        "noLevel3Hint": true
+      },
+      "contentWarning": "进入第四幕前显示“后续包含文学作品中的殉情情节，可选择略过结局动画”；画面仅用水波、绣鞋和树影表达。",
+      "failHints": [
+        "人物死亡后再次安排日常或婚姻事件，判为严重状态冲突，每次扣分。",
+        "只完成投水而未完成仲卿后续选择，提示“兰芝的结局已经发生，但仲卿的故事仍未收束”。"
+      ],
+      "rewards": { "cards": ["S12", "C10", "C11", "E16", "E17", "E18", "E19", "E20", "E21"], "codex": ["经典结局图鉴"] }
+    },
+    {
+      "id": 4,
+      "name": "命运岔路",
+      "acts": 5,
+      "passScore": 75,
+      "positioning": "多结局改写关。玩家需改变造成悲剧的条件，而不是简单删去死亡事件。",
+      "pool": { "scenes": ["S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08", "S09", "S10", "S11", "S12"], "characters": ["C01", "C02", "C03", "C04", "C05", "C06", "C07", "C08", "C09", "C10", "C11", "C12"], "events": ["E01", "E02", "E03", "E04", "E05", "E06", "E07", "E08", "E09", "E10", "E11", "E14", "E15", "E16", "E17", "E18", "E19", "E20", "E21", "E22"], "lockedEvents": ["E12", "E13"] },
+      "goals": { "allActsValid": true, "conflictInFirstActs": { "acts": 2, "min": 1 }, "minAddedEvents": 2, "addedEventsAfterAct": 2, "forbiddenDeaths": true, "endings": ["flee", "reconcile", "independence"] },
+      "recommended": [
+        { "act": 1, "scene": "S02", "characters": ["C01"], "event": "E01", "note": "交代兰芝的生活状态" },
+        { "act": 2, "scene": "S03", "characters": ["C01", "C03"], "event": "E02", "note": "堂前受责满足前两幕冲突要求" },
+        { "act": 3, "scene": "S03", "characters": ["C03", "C11"], "event": "E16", "note": "族老调解是第一个改写事件，需先有家庭冲突" },
+        { "act": 4, "scene": "S03", "characters": ["C01", "C03"], "event": "E18", "note": "焦母醒悟是第二个改写事件，触发家庭和解结局" },
+        { "act": 5, "scene": "S01", "characters": ["C01", "C02"], "event": "E03", "note": "和解后重建日常，收束故事" }
+      ],
+      "routes": [
+        { "id": "flee", "name": "远走自由", "nodes": "E04／E09 → E06 → E17", "meaning": "二人主动离开压迫环境，但家庭冲突尚未解决" },
+        { "id": "reconcile", "name": "家庭和解", "nodes": "E02 → E16（若用 E20 需先有 E08/E09）→ E18", "meaning": "引入调解或公共支持，使焦母改变决定" },
+        { "id": "independence", "name": "兰芝新生", "nodes": "E04 → E09 → E19 → E21", "meaning": "兰芝拒绝被两家安排，以织艺获得独立生活" }
+      ],
+      "examples": [
+        "S02＋C01＋E01；S03＋C01＋C03＋E02；S03＋C03＋C11＋E16；S03＋C01＋C03＋E18；S01＋C01＋C02＋E03，触发“破礼重圆”。",
+        "S03＋C02＋C03＋E04；S04＋C01＋C02＋E06；S06＋C01＋C05＋E09；S06＋C01＋C09＋E20；S05＋C01＋C02＋E17，触发“磐石蒲苇”。"
+      ],
+      "challenge": "不使用 E17 夫妻远走，仍完成非悲剧结局，以鼓励玩家处理冲突根源。",
+      "threeStar": {
+        "forbiddenEvents": ["E17"],
+        "endings": ["flee", "reconcile", "independence"],
+        "noLevel3Hint": true
+      },
+      "failHints": [
+        "没有展示任何压迫便直接使用 E18，提示“醒悟需要回应已经发生的冲突”。",
+        "只有拒绝权贵却没有后续生活选择，提示“反抗已经发生，还需要为人物安排可持续的出路”。"
+      ],
+      "rewards": { "cards": [], "codex": ["三张改写结局插画"], "marks": ["refusedPower", "villagerSupport"], "other": ["自由编排模式"] }
+    },
+    {
+      "id": 5,
+      "name": "奇谭织梦",
+      "acts": 5,
+      "passScore": 80,
+      "positioning": "最终综合关，不提供固定标准答案，由随机主题命题检验玩家的叙事组织能力。",
+      "pool": { "scenes": ["S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08", "S09", "S10", "S11", "S12"], "characters": ["C01", "C02", "C03", "C04", "C05", "C06", "C07", "C08", "C09", "C10", "C11", "C12"], "events": ["E01", "E02", "E03", "E04", "E05", "E06", "E07", "E08", "E09", "E10", "E11", "E12", "E13", "E14", "E15", "E16", "E17", "E18", "E19", "E20", "E21", "E22"], "lockedEvents": [] },
+      "rerolls": 1,
+      "themes": [
+        {
+          "name": "誓言的重量", "tags": ["爱情忠贞", "个人选择", "文化意象"], "cooccur": ["C01", "C02"], "cooccurMinActs": 2,
+          "recommended": [
+            { "act": 1, "scene": "S03", "characters": ["C02", "C03"], "event": "E04", "note": "家庭冲突开启，遣归是后续压力的前置" },
+            { "act": 2, "scene": "S04", "characters": ["C01", "C02"], "event": "E06", "note": "誓言点出“爱情忠贞”与“文化意象”，双主角第一幕同场" },
+            { "act": 3, "scene": "S06", "characters": ["C01", "C05"], "event": "E09", "note": "娘家施压，承接遣归因果" },
+            { "act": 4, "scene": "S06", "characters": ["C01", "C02"], "event": "E19", "note": "拒绝权贵体现“个人选择”，双主角第二幕同场" },
+            { "act": 5, "scene": "S05", "characters": ["C01", "C02"], "event": "E17", "note": "夫妻远走，完成誓言主题的圆满收束" }
+          ]
+        },
+        {
+          "name": "谁织成悲剧", "tags": ["家庭权力", "婚姻压力", "社会舆论"], "minConflictCharacters": 3,
+          "recommended": [
+            { "act": 1, "scene": "S03", "characters": ["C02", "C03"], "event": "E04", "note": "焦母制造家庭权力冲突" },
+            { "act": 2, "scene": "S06", "characters": ["C01", "C05", "C06"], "event": "E09", "note": "兄长与媒人登场，叠加婚姻压力" },
+            { "act": 3, "scene": "S06", "characters": ["C01", "C06", "C07"], "event": "E08", "note": "两次说亲强化社会舆论与婚姻压力" },
+            { "act": 4, "scene": "S08", "characters": ["C01"], "event": "E19", "note": "兰芝当堂拒绝，形成主动抉择" },
+            { "act": 5, "scene": "S02", "characters": ["C01"], "event": "E21", "note": "兰芝自立，回应“谁织成悲剧”的追问" }
+          ]
+        },
+        {
+          "name": "兰芝的选择", "tags": ["个人尊严", "婚姻自主", "命运改写"], "finalActLedBy": "C01",
+          "recommended": [
+            { "act": 1, "scene": "S03", "characters": ["C02", "C03"], "event": "E04", "note": "冲突起点：被迫遣归" },
+            { "act": 2, "scene": "S06", "characters": ["C01", "C05"], "event": "E09", "note": "娘家逼嫁，压迫升级" },
+            { "act": 3, "scene": "S06", "characters": ["C01"], "event": "E19", "note": "兰芝拒绝权贵，体现尊严与婚姻自主" },
+            { "act": 4, "scene": "S02", "characters": ["C01"], "event": "E21", "note": "以织艺自立，完成命运改写" },
+            { "act": 5, "scene": "S04", "characters": ["C01", "C12"], "event": "E22", "note": "侍女见证，兰芝主导终幕收束" }
+          ]
+        },
+        {
+          "name": "众人之声", "tags": ["社会舆论", "公共支持", "命运改写"], "mustIncludeCharacters": ["C09"], "characterArc": ["C09"],
+          "recommended": [
+            { "act": 1, "scene": "S03", "characters": ["C02", "C03"], "event": "E04", "note": "家庭冲突开启故事" },
+            { "act": 2, "scene": "S06", "characters": ["C01", "C05", "C09"], "event": "E09", "note": "乡民见证逼嫁，第一次登场" },
+            { "act": 3, "scene": "S06", "characters": ["C01", "C09"], "event": "E20", "note": "乡民转为相助，体现公共支持与命运改写" },
+            { "act": 4, "scene": "S06", "characters": ["C01"], "event": "E19", "note": "兰芝拒绝权贵，呼应众人声援" },
+            { "act": 5, "scene": "S02", "characters": ["C01"], "event": "E21", "note": "自立终局，独立结局收束" }
+          ]
+        },
+        {
+          "name": "孔雀重飞", "tags": ["爱情忠贞"], "marks": ["refusedPower", "villagerSupport"], "forbiddenEvents": ["E12", "E13"], "finalScene": "S12",
+          "recommended": [
+            { "act": 1, "scene": "S03", "characters": ["C02", "C03"], "event": "E04", "note": "冲突起点，遣归成立" },
+            { "act": 2, "scene": "S06", "characters": ["C01", "C05"], "event": "E09", "note": "娘家逼嫁承接压力" },
+            { "act": 3, "scene": "S08", "characters": ["C01"], "event": "E19", "note": "拒绝权贵，达成“拒绝权贵”印记" },
+            { "act": 4, "scene": "S06", "characters": ["C01", "C09"], "event": "E20", "note": "乡民相助，达成“乡民相助”印记" },
+            { "act": 5, "scene": "S12", "characters": ["C01", "C02", "C10"], "event": "E15", "note": "孔雀台双鸟重逢，冲击隐藏结局“孔雀重飞”" }
+          ]
+        }
+      ],
+      "goals": { "allActsValid": true, "minConflictNodes": 1, "minDecisionNodes": 1, "explicitEnding": true, "noStateConflict": true },
+      "endingPriority": ["hidden", "independence", "reconcile", "flee", "classic", "wealth"],
+      "threeStar": { "minScore": 90, "minDistinctScenes": 4, "noDuplicateEvents": true, "sourceMix": { "core": 1, "legend": 1, "added": 2 }, "noLevel3Hint": true, "differentEndingFromLast": true },
+      "failFeedback": "系统不公布标准解，而是从最低分维度给出针对性建议：完整度不足提示补充抉择或结尾；逻辑不足指出最早的因果断点；主题不足显示尚未被行动体现的标签；文化还原不足建议加入经典意象，但不强制改变玩家结局。",
+      "rewards": { "cards": [], "codex": ["传说织梦者称号", "全部故事回放"], "other": ["孔雀台动态背景", "自定义主题模式", "隐藏结局：孔雀重飞"] }
+    }
+  ],
+  "scoring": {
+    "dimensions": { "completeness": 30, "logic": 30, "theme": 25, "culture": 15 },
+    "perValidAct": 4,
+    "allPhasesBonus": 10,
+    "prerequisiteMin": 3,
+    "prerequisiteMax": 5,
+    "contradictionPenalty": 8,
+    "coreCharacters": ["C01", "C02", "C03"],
+    "coreCharactersBonus": 5,
+    "imagery": [
+      { "id": "oath", "ref": "E06", "name": "磐石蒲苇", "min": 2, "max": 4 },
+      { "id": "bough", "ref": "E13", "name": "东南枝", "min": 2, "max": 4 },
+      { "id": "birds", "ref": "E15", "name": "双鸟", "min": 2, "max": 4 }
+    ],
+    "range": [0, 100],
+    "pass": 70,
+    "legend": 90,
+    "stars": [
+      { "star": 1, "rule": "达到该关通关分" },
+      { "star": 2, "minScore": 80, "noContradiction": true },
+      { "star": 3, "minScore": 90, "completeChallenge": true }
+    ],
+    "ranks": [
+      { "min": 90, "max": 100, "title": "传说织梦者", "feedback": "故事完整、文化意象丰富，解锁隐藏内容" },
+      { "min": 80, "max": 89, "title": "故事编织者", "feedback": "逻辑清晰且主题明确，可尝试另一结局" },
+      { "min": 70, "max": 79, "title": "初识传说", "feedback": "已完成基本叙事，但部分因果或文化元素不足" },
+      { "min": 50, "max": 69, "title": "尚待续织", "feedback": "故事大体成立，提示补充冲突、抉择或结局" },
+      { "min": 0, "max": 49, "title": "散落的篇章", "feedback": "组合缺乏连续性，引导使用推荐卡片" }
+    ],
+    "hints": {
+      "levels": [
+        "一级提示说明问题所在幕。",
+        "二级提示指出所需卡片类型或因果条件。",
+        "三级提示高亮一组可用卡片。"
+      ],
+      "rule": "使用三级提示不影响通关，但本关最高只能获得二星。",
+      "priority": ["缺少人物", "场景不符", "前置缺失", "状态冲突"]
+    }
+  }
 }
