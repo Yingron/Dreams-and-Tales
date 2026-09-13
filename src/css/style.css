@@ -902,3 +902,1236 @@ img {
     transition-duration: 1ms !important;
   }
 }
+
+/* ===== 孔雀东南飞：数据驱动的卡片展示界面（仅本模块使用） ===== */
+.kongque-board {
+  width: 100%;
+  color: var(--color-ink);
+}
+
+.kongque-board__header {
+  display: flex;
+  margin-bottom: 2rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgb(32 27 24 / 18%);
+}
+
+.kongque-board__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  letter-spacing: 0.14em;
+}
+
+.kongque-board__back {
+  padding: 0.55rem 1rem;
+  color: var(--color-ink-soft);
+  letter-spacing: 0.1em;
+  border: 1px solid rgb(32 27 24 / 30%);
+  background: var(--color-paper-light);
+  cursor: pointer;
+  transition:
+    color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.kongque-board__back:hover {
+  color: var(--color-cinnabar);
+  border-color: var(--color-cinnabar);
+}
+
+.kongque-board__back:focus-visible {
+  outline: 3px solid var(--color-cinnabar);
+  outline-offset: 2px;
+}
+
+.kongque-group + .kongque-group {
+  margin-top: 2.5rem;
+}
+
+.kongque-group__title {
+  display: inline-block;
+  margin: 0 0 1rem;
+  padding-left: 0.7rem;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  letter-spacing: 0.2em;
+  border-left: 4px solid var(--color-cinnabar);
+}
+
+.kongque-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.kongque-card {
+  display: flex;
+  margin: 0;
+  overflow: hidden;
+  flex-direction: column;
+  background: var(--color-paper-light);
+  border: 1px solid rgb(32 27 24 / 22%);
+  box-shadow: 0 0.5rem 1.2rem -0.8rem var(--color-shadow);
+}
+
+.kongque-card__image {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  background: var(--color-paper-deep);
+  filter: sepia(0.08);
+}
+
+.kongque-card__caption {
+  display: flex;
+  padding: 0.5rem 0.6rem;
+  align-items: baseline;
+  gap: 0.5rem;
+  border-top: 1px solid rgb(32 27 24 / 12%);
+}
+
+.kongque-card__id {
+  color: var(--color-cinnabar);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.kongque-card__name {
+  font-size: 0.82rem;
+  letter-spacing: 0.05em;
+}
+
+.kongque-loading,
+.kongque-error {
+  margin: 4rem auto;
+  text-align: center;
+  color: var(--color-ink-soft);
+  letter-spacing: 0.12em;
+}
+
+.kongque-error {
+  color: var(--color-cinnabar-dark);
+}
+
+@media (max-width: 680px) {
+  .kongque-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.7rem;
+  }
+
+  .kongque-board__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ===== 孔雀东南飞：三栏编排界面（素材库 / 故事面板 / 预览） ===== */
+.kongque-game {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr) 280px;
+  gap: 1rem;
+  align-items: start;
+}
+
+.kongque-toolbar {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 1rem;
+  background: var(--color-paper-light);
+  border: 1px solid rgb(32 27 24 / 18%);
+}
+
+.kongque-toolbar__picker {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.kongque-toolbar__picker select {
+  padding: 0.35rem 0.5rem;
+  color: var(--color-ink);
+  font: inherit;
+  background: var(--color-paper);
+  border: 1px solid rgb(32 27 24 / 35%);
+}
+
+.kongque-toolbar__picker select:focus-visible {
+  outline: 3px solid var(--color-cinnabar);
+  outline-offset: 1px;
+}
+
+.kongque-toolbar__goal {
+  flex: 1;
+  margin: 0;
+  color: var(--color-ink-soft);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.kongque-toolbar__submit {
+  padding: 0.5rem 1.1rem;
+  color: var(--color-paper);
+  letter-spacing: 0.12em;
+  background: var(--color-cinnabar);
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.kongque-toolbar__submit:disabled {
+  cursor: not-allowed;
+  background: rgb(32 27 24 / 30%);
+}
+
+/* —— 左栏：素材库 —— */
+.kongque-library {
+  position: sticky;
+  top: 1rem;
+  display: flex;
+  max-height: calc(100vh - 8rem);
+  flex-direction: column;
+  padding: 0.9rem;
+  background: var(--color-paper-light);
+  border: 1px solid rgb(32 27 24 / 18%);
+}
+
+.kongque-tabs {
+  display: flex;
+  flex: 0 0 auto;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid rgb(32 27 24 / 20%);
+}
+
+.kongque-tabs__item {
+  flex: 1;
+  padding: 0.6rem 0;
+  color: var(--color-ink-soft);
+  font: inherit;
+  font-size: 0.92rem;
+  letter-spacing: 0.15em;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+}
+
+.kongque-tabs__item.is-active {
+  color: var(--color-cinnabar);
+  border-bottom-color: var(--color-cinnabar);
+}
+
+.kongque-tabs__item:focus-visible {
+  outline: 3px solid var(--color-cinnabar);
+  outline-offset: -3px;
+}
+
+.kongque-library__grid {
+  flex: 1 1 auto;
+  /* min-height:0 是滚动区必需：否则 22 张事件卡的 min-content 高度会撑破
+     父级 max-height，滚动失效并连带把卡片下方文字挤压消失（全屏时尤甚）。 */
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  /* 行严格按内容高度排列，卡片不被纵向拉伸。 */
+  grid-auto-rows: min-content;
+  align-content: start;
+  gap: 0.75rem;
+  overflow-y: auto;
+  padding-right: 0.2rem;
+}
+
+.kongque-pick {
+  position: relative;
+  display: flex;
+  /* 卡片高度只由自身内容决定，杜绝同行拉伸造成的文字裁切。 */
+  align-self: start;
+  padding: 0;
+  overflow: hidden;
+  flex-direction: column;
+  background: var(--color-paper);
+  border: 1px solid rgb(32 27 24 / 25%);
+  cursor: pointer;
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.kongque-pick:hover {
+  border-color: var(--color-gold);
+}
+
+.kongque-pick.is-selected {
+  border: 2px solid var(--color-cinnabar);
+  box-shadow: 0 0 0 2px rgb(168 50 44 / 20%);
+}
+
+.kongque-pick:focus-visible {
+  outline: 3px solid var(--color-cinnabar);
+  outline-offset: 2px;
+}
+
+.kongque-pick__image {
+  flex: 0 0 auto;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  background: var(--color-paper-deep);
+}
+
+/* 来源角标（策划书 2.1／验收5）：原作核心／传说表达／游戏新增 */
+.kongque-pick__source {
+  position: absolute;
+  top: 0.32rem;
+  left: 0.32rem;
+  padding: 0.12rem 0.34rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  color: var(--color-paper-light);
+  background: rgb(32 27 24 / 72%);
+  border: 1px solid rgb(248 241 227 / 35%);
+  pointer-events: none;
+}
+
+.kongque-pick__source.is-core {
+  background: rgb(110 33 28 / 88%);
+}
+
+.kongque-pick__source.is-legend {
+  background: rgb(48 78 70 / 90%);
+}
+
+.kongque-pick__source.is-added {
+  background: rgb(106 83 42 / 90%);
+}
+
+.kongque-pick__label {
+  display: flex;
+  /* 文字区绝不参与压缩：图片再高，名称也保留在图片下方。 */
+  flex: 0 0 auto;
+  padding: 0.42rem 0.5rem 0.5rem;
+  flex-direction: column;
+  gap: 0.14rem;
+  border-top: 1px solid rgb(32 27 24 / 10%);
+}
+
+.kongque-pick__id {
+  color: var(--color-cinnabar);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.kongque-pick__name {
+  color: var(--color-ink);
+  font-size: 0.84rem;
+  font-weight: 600;
+  line-height: 1.35;
+  /* 名称最多两行，超出省略，但整块文字区始终占位、不会整体消失。 */
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.kongque-library__hint {
+  flex: 0 0 auto;
+  margin: 0.75rem 0 0;
+  padding-top: 0.65rem;
+  color: var(--color-ink-soft);
+  font-size: 0.76rem;
+  line-height: 1.5;
+  border-top: 1px dashed rgb(32 27 24 / 20%);
+}
+
+/* —— 中栏：故事面板（幕槽） —— */
+.kongque-stage {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.kongque-act {
+  padding: 0.9rem 1rem 1rem;
+  background: var(--color-paper-light);
+  border: 1px solid rgb(32 27 24 / 18%);
+}
+
+.kongque-act__title {
+  margin: 0 0 0.7rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.18em;
+}
+
+.kongque-act__slots {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr 1fr;
+  gap: 0.7rem;
+}
+
+.kongque-slot {
+  display: flex;
+  min-height: 7rem;
+  padding: 0.5rem;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 0.4rem;
+  background: var(--color-paper);
+  border: 1px dashed rgb(32 27 24 / 30%);
+  transition: border-color var(--transition-fast);
+}
+
+.kongque-slot.is-accepting {
+  border: 2px dashed var(--color-cinnabar);
+  background: rgb(168 50 44 / 6%);
+  cursor: pointer;
+}
+
+.kongque-slot.is-filled {
+  border-style: solid;
+}
+
+.kongque-slot__label {
+  width: 100%;
+  color: var(--color-ink-soft);
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+}
+
+.kongque-slot__empty {
+  align-self: center;
+  width: 100%;
+  color: rgb(32 27 24 / 45%);
+  font-size: 0.76rem;
+  text-align: center;
+}
+
+.kongque-chip {
+  display: inline-flex;
+  max-width: 100%;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.35rem 0.2rem 0.2rem;
+  background: var(--color-paper-deep);
+  border: 1px solid rgb(32 27 24 / 20%);
+  font-size: 0.74rem;
+}
+
+.kongque-chip__image {
+  width: 2rem;
+  height: 2.6rem;
+  object-fit: cover;
+}
+
+.kongque-chip__text {
+  white-space: nowrap;
+}
+
+.kongque-chip__remove {
+  display: inline-flex;
+  width: 1.2rem;
+  height: 1.2rem;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-ink-soft);
+  font-size: 0.9rem;
+  line-height: 1;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.kongque-chip__remove:hover {
+  color: var(--color-cinnabar);
+}
+
+.kongque-chip__remove:focus-visible {
+  outline: 2px solid var(--color-cinnabar);
+  outline-offset: 1px;
+}
+
+/* —— 右栏：故事预览 —— */
+.kongque-preview {
+  position: sticky;
+  top: 1rem;
+  display: flex;
+  max-height: calc(100vh - 8rem);
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 0.8rem;
+  overflow-y: auto;
+  background: var(--color-paper-light);
+  border: 1px solid rgb(32 27 24 / 18%);
+}
+
+.kongque-preview__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.18em;
+}
+
+.kongque-preview__item {
+  padding: 0.5rem 0.6rem;
+  background: var(--color-paper);
+  border-left: 3px solid rgb(32 27 24 / 25%);
+}
+
+.kongque-preview__item.is-complete {
+  border-left-color: var(--color-gold);
+}
+
+.kongque-preview__act {
+  margin: 0 0 0.25rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.kongque-preview__detail {
+  margin: 0;
+  color: var(--color-ink-soft);
+  font-size: 0.74rem;
+  line-height: 1.5;
+}
+
+.kongque-preview__score {
+  margin-top: auto;
+  padding: 0.6rem;
+  color: var(--color-ink-soft);
+  font-size: 0.72rem;
+  line-height: 1.5;
+  text-align: center;
+  border: 1px dashed rgb(32 27 24 / 25%);
+}
+
+@media (max-width: 980px) {
+  .kongque-game {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .kongque-library,
+  .kongque-preview {
+    position: static;
+    max-height: none;
+  }
+
+  .kongque-library__grid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  }
+
+  .kongque-toolbar {
+    flex-wrap: wrap;
+  }
+
+  .kongque-toolbar__goal {
+    flex-basis: 100%;
+    order: 3;
+  }
+}
+
+@media (max-width: 680px) {
+  .kongque-act__slots {
+    grid-template-columns: 1fr;
+  }
+
+  .kongque-slot {
+    min-height: 5.5rem;
+  }
+}
+
+/* ===== 孔雀东南飞：规则反馈与结算 ===== */
+.kongque-preview__feedback {
+  margin: 0.4rem 0 0;
+  padding: 0.4rem 0.5rem;
+  font-size: 0.72rem;
+  line-height: 1.55;
+  border-left: 2px solid transparent;
+}
+
+.kongque-preview__feedback.is-pending {
+  color: rgb(32 27 24 / 50%);
+  border-left-color: rgb(32 27 24 / 25%);
+}
+
+.kongque-preview__feedback.is-valid {
+  color: var(--color-ink);
+  background: rgb(122 96 48 / 8%);
+  border-left-color: var(--color-gold);
+}
+
+.kongque-preview__feedback.is-warn {
+  color: var(--color-cinnabar-dark);
+  background: rgb(168 50 44 / 7%);
+  border-left-color: var(--color-cinnabar);
+}
+
+/* 提交后卡槽的有效/无效标记 */
+.kongque-slot.is-valid {
+  border-color: var(--color-gold);
+  background: rgb(122 96 48 / 5%);
+}
+
+.kongque-slot.is-invalid {
+  border-color: var(--color-cinnabar);
+  background: rgb(168 50 44 / 5%);
+}
+
+/* —— 结算卡 —— */
+.kongque-result {
+  margin-top: 0.8rem;
+  padding: 0.8rem;
+  border: 1px solid rgb(32 27 24 / 25%);
+}
+
+.kongque-result.is-pass {
+  background: rgb(122 96 48 / 8%);
+  border-color: var(--color-gold);
+}
+
+.kongque-result.is-fail {
+  background: rgb(168 50 44 / 5%);
+  border-color: rgb(168 50 44 / 50%);
+}
+
+.kongque-result__head {
+  margin: 0 0 0.6rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+}
+
+.kongque-result.is-pass .kongque-result__head {
+  color: var(--color-gold-dark, #6a532a);
+}
+
+.kongque-result.is-fail .kongque-result__head {
+  color: var(--color-cinnabar-dark);
+}
+
+.kongque-result__ending {
+  margin-bottom: 0.6rem;
+  padding: 0.5rem 0.6rem;
+  background: var(--color-paper);
+  border-left: 3px solid var(--color-cinnabar);
+}
+
+.kongque-result__ending-name {
+  margin: 0 0 0.25rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.kongque-result__ending-text {
+  margin: 0;
+  color: var(--color-ink-soft);
+  font-size: 0.72rem;
+  line-height: 1.6;
+}
+
+.kongque-result__bar {
+  display: flex;
+  margin-bottom: 0.35rem;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+}
+
+.kongque-result__bar > span:first-child {
+  width: 3.5rem;
+  color: var(--color-ink-soft);
+}
+
+.kongque-result__track {
+  flex: 1;
+  height: 0.5rem;
+  background: var(--color-paper-deep);
+}
+
+.kongque-result__fill {
+  display: block;
+  height: 100%;
+  background: var(--color-cinnabar);
+  transition: width var(--transition-fast);
+}
+
+.kongque-result__num {
+  width: 1.6rem;
+  text-align: right;
+  font-weight: 700;
+}
+
+.kongque-result__total {
+  margin: 0.5rem 0 0;
+  padding-top: 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  border-top: 1px solid rgb(32 27 24 / 15%);
+}
+
+.kongque-result__problems {
+  margin: 0.5rem 0 0;
+  padding-left: 1.1rem;
+  color: var(--color-cinnabar-dark);
+  font-size: 0.72rem;
+  line-height: 1.6;
+}
+
+.kongque-result__tip {
+  margin: 0.5rem 0 0;
+  color: var(--color-ink-soft);
+  font-size: 0.7rem;
+  line-height: 1.5;
+}
+
+/* ===== 孔雀东南飞：进度存档、三级提示与随机命题 ===== */
+
+/* 工具栏提示按钮与提示文案 */
+.kongque-toolbar__hint {
+  padding: 0.45rem 0.9rem;
+  color: var(--color-ink);
+  letter-spacing: 0.1em;
+  background: var(--color-gold-light);
+  border: 1px solid var(--color-gold);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.kongque-toolbar__hint:hover {
+  border-color: var(--color-gold-dark, #6a532a);
+}
+
+.kongque-toolbar__hinttext {
+  flex-basis: 100%;
+  order: 4;
+  margin: 0;
+  padding: 0.45rem 0.6rem;
+  color: var(--color-cinnabar-dark);
+  font-size: 0.76rem;
+  line-height: 1.55;
+  background: rgb(185 154 87 / 12%);
+  border-left: 2px solid var(--color-gold);
+}
+
+/* 第 5 关命题横幅 */
+.kongque-theme {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 1rem;
+  padding: 0.6rem 1rem;
+  background: rgb(48 78 70 / 8%);
+  border: 1px solid rgb(48 78 70 / 35%);
+}
+
+.kongque-theme__name {
+  margin: 0;
+  color: var(--color-jade);
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  white-space: nowrap;
+}
+
+.kongque-theme__req {
+  flex: 1;
+  min-width: 16rem;
+  margin: 0;
+  color: var(--color-ink-soft);
+  font-size: 0.74rem;
+  line-height: 1.55;
+}
+
+.kongque-theme__reroll {
+  padding: 0.3rem 0.7rem;
+  color: var(--color-jade);
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  background: var(--color-paper-light);
+  border: 1px solid var(--color-jade);
+  cursor: pointer;
+}
+
+.kongque-theme__reroll:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+/* 三级提示命中的素材库卡片 */
+.kongque-pick.is-hinted {
+  border: 2px dashed var(--color-gold-dark, #6a532a);
+  box-shadow: 0 0 0 2px rgb(185 154 87 / 30%);
+}
+
+/* 结算卡：提示封顶说明与下一关按钮 */
+.kongque-result__hintnote {
+  margin: 0.5rem 0 0;
+  color: var(--color-cinnabar-dark);
+  font-size: 0.7rem;
+}
+
+.kongque-result__next {
+  display: block;
+  width: 100%;
+  margin-top: 0.6rem;
+  padding: 0.55rem 1rem;
+  color: var(--color-paper-light);
+  letter-spacing: 0.12em;
+  background: var(--color-jade);
+  border: none;
+  cursor: pointer;
+}
+
+.kongque-result__next:hover {
+  background: rgb(48 78 70 / 88%);
+}
+
+/* 结算卡：三星挑战差距提示（策划书 9.2 规则4） */
+.kongque-result__challenge-title {
+  margin: 0.55rem 0 0.2rem;
+  color: var(--color-gold);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.kongque-result__challenge {
+  margin: 0;
+  padding-left: 1rem;
+  color: var(--color-ink-soft);
+  font-size: 0.7rem;
+  line-height: 1.6;
+}
+
+/* 第 3 关殉情内容警告遮罩（策划书 9.5／验收6） */
+.kongque-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  padding: 1.2rem;
+  place-items: center;
+  background: rgb(32 27 24 / 55%);
+  backdrop-filter: blur(2px);
+}
+
+.kongque-modal__dialog {
+  width: min(100%, 26rem);
+  padding: 1.4rem 1.4rem 1.2rem;
+  background: var(--color-paper-light);
+  border: 1px solid var(--color-cinnabar-dark);
+  box-shadow: 0 12px 40px rgb(32 27 24 / 35%);
+}
+
+.kongque-modal__title {
+  margin: 0 0 0.6rem;
+  color: var(--color-cinnabar-dark);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+}
+
+.kongque-modal__text {
+  margin: 0 0 1.1rem;
+  color: var(--color-ink);
+  font-size: 0.84rem;
+  line-height: 1.8;
+}
+
+.kongque-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.7rem;
+}
+
+.kongque-modal__button {
+  padding: 0.5rem 1.1rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  border: 1px solid var(--color-ink-soft);
+  cursor: pointer;
+}
+
+.kongque-modal__button.is-secondary {
+  color: var(--color-ink-soft);
+  background: transparent;
+}
+
+.kongque-modal__button.is-primary {
+  color: var(--color-paper-light);
+  background: var(--color-cinnabar);
+  border-color: var(--color-cinnabar-dark);
+}
+
+.kongque-modal__button.is-primary:hover {
+  background: var(--color-cinnabar-dark);
+}
+
+/* ===== 孔雀东南飞：教学引导、织梦卷轴、图鉴与结算增强（追加） ===== */
+
+/* 工具栏次级按钮（织梦卷轴 / 图鉴入口） */
+.kongque-toolbar__aux {
+  padding: 0.36rem 0.7rem;
+  color: var(--color-ink);
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  background: var(--color-paper-light);
+  border: 1px solid rgb(32 27 24 / 35%);
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.kongque-toolbar__aux:hover {
+  background: rgb(122 96 48 / 10%);
+  border-color: var(--color-gold);
+}
+
+.kongque-toolbar__aux:focus-visible {
+  outline: 2px solid var(--color-cinnabar);
+  outline-offset: 2px;
+}
+
+/* 教学分步引导横幅（第 1 关） */
+.kongque-tutorial {
+  grid-column: 1 / -1;
+  margin-bottom: 0.2rem;
+  padding: 0.6rem 0.9rem;
+  background: rgb(122 96 48 / 8%);
+  border: 1px dashed var(--color-gold);
+}
+
+.kongque-tutorial__label {
+  margin: 0 0 0.25rem;
+  color: var(--color-gold-dark, #6a532a);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.kongque-tutorial__text {
+  margin: 0 0 0.4rem;
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.kongque-tutorial__dots {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.kongque-tutorial__dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  background: rgb(32 27 24 / 18%);
+  border-radius: 50%;
+}
+
+.kongque-tutorial__dot.is-done {
+  background: var(--color-gold);
+}
+
+.kongque-tutorial__dot.is-current {
+  background: var(--color-cinnabar);
+}
+
+/* 结算页信息小节：因果链 / 文化知识卡 / 其他已满足结局 / 改写路线 */
+.kongque-result__section {
+  margin: 0.55rem 0;
+  padding-top: 0.45rem;
+  border-top: 1px solid rgb(32 27 24 / 12%);
+}
+
+.kongque-result__sectiontitle {
+  margin: 0 0 0.3rem;
+  color: var(--color-gold-dark, #6a532a);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.kongque-result__chain {
+  margin: 0;
+  font-size: 0.74rem;
+  font-weight: 600;
+  line-height: 1.7;
+  word-break: break-all;
+}
+
+.kongque-result__epilogue {
+  margin: 0.25rem 0 0;
+  color: var(--color-ink-soft);
+  font-size: 0.7rem;
+}
+
+.kongque-culture {
+  margin-bottom: 0.35rem;
+  padding: 0.45rem 0.55rem;
+  background: var(--color-paper);
+  border-left: 3px solid var(--color-gold);
+}
+
+.kongque-culture__name {
+  margin: 0 0 0.2rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.kongque-culture__text {
+  margin: 0;
+  color: var(--color-ink-soft);
+  font-size: 0.7rem;
+  line-height: 1.7;
+}
+
+.kongque-result__other {
+  margin-bottom: 0.35rem;
+  padding: 0.4rem 0.55rem;
+  background: rgb(122 96 48 / 6%);
+  border-left: 3px solid rgb(122 96 48 / 45%);
+}
+
+.kongque-result__other-name {
+  margin: 0 0 0.15rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.kongque-result__other-text {
+  margin: 0;
+  color: var(--color-ink-soft);
+  font-size: 0.68rem;
+  line-height: 1.6;
+}
+
+.kongque-result__route {
+  margin-bottom: 0.3rem;
+}
+
+.kongque-result__route-name {
+  margin: 0 0 0.1rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.kongque-result__route-meaning {
+  margin: 0;
+  color: var(--color-ink-soft);
+  font-size: 0.68rem;
+  line-height: 1.6;
+}
+
+/* 结算页“存入织梦卷轴” */
+.kongque-scrollsave {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+  margin-top: 0.55rem;
+  padding-top: 0.45rem;
+  border-top: 1px solid rgb(32 27 24 / 12%);
+}
+
+.kongque-input {
+  flex: 1 1 8rem;
+  min-width: 0;
+  padding: 0.34rem 0.5rem;
+  color: var(--color-ink);
+  font-size: 0.74rem;
+  background: var(--color-paper-light);
+  border: 1px solid rgb(32 27 24 / 35%);
+}
+
+.kongque-input:focus-visible {
+  outline: 2px solid var(--color-cinnabar);
+  outline-offset: 1px;
+}
+
+.kongque-scrollsave__button {
+  padding: 0.34rem 0.6rem;
+  color: var(--color-paper-light);
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  background: var(--color-cinnabar);
+  border: 1px solid var(--color-cinnabar-dark);
+}
+
+.kongque-scrollsave__button:hover {
+  background: var(--color-cinnabar-dark);
+}
+
+.kongque-scrollsave__button:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+.kongque-scrollsave__note {
+  flex-basis: 100%;
+  margin: 0;
+  color: var(--color-gold-dark, #6a532a);
+  font-size: 0.68rem;
+}
+
+/* 模态框扩展：宽版内容区、关闭按钮、列表与图鉴 */
+.kongque-modal__dialog--wide {
+  position: relative;
+  width: min(100%, 34rem);
+  max-height: min(80vh, 42rem);
+  overflow-y: auto;
+}
+
+.kongque-modal__close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 1.7rem;
+  height: 1.7rem;
+  padding: 0;
+  color: var(--color-ink);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid rgb(32 27 24 / 35%);
+  border-radius: 50%;
+}
+
+.kongque-modal__close:hover {
+  background: rgb(32 27 24 / 8%);
+}
+
+.kongque-modal__close:focus-visible {
+  outline: 2px solid var(--color-cinnabar);
+  outline-offset: 2px;
+}
+
+.kongque-modal__body {
+  margin-top: 0.6rem;
+}
+
+.kongque-modal__intro {
+  margin: 0 0 0.5rem;
+  color: var(--color-ink-soft);
+  font-size: 0.72rem;
+}
+
+.kongque-modal__empty {
+  margin: 0.4rem 0;
+  color: var(--color-ink-soft);
+  font-size: 0.76rem;
+  line-height: 1.7;
+}
+
+.kongque-modal__item {
+  margin-bottom: 0.5rem;
+  padding: 0.55rem 0.6rem;
+  background: var(--color-paper);
+  border: 1px solid rgb(32 27 24 / 18%);
+}
+
+.kongque-modal__item-name {
+  margin: 0 0 0.2rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.kongque-modal__item-meta {
+  margin: 0 0 0.45rem;
+  color: var(--color-ink-soft);
+  font-size: 0.68rem;
+}
+
+.kongque-modal__item .kongque-modal__actions {
+  justify-content: flex-end;
+}
+
+.kongque-codex {
+  margin-bottom: 0.7rem;
+}
+
+.kongque-codex__title {
+  margin: 0 0 0.3rem;
+  color: var(--color-gold-dark, #6a532a);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.kongque-codex__entries {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.kongque-codex__entry {
+  display: inline-block;
+  padding: 0.22rem 0.5rem;
+  font-size: 0.7rem;
+  background: rgb(122 96 48 / 10%);
+  border: 1px solid rgb(122 96 48 / 40%);
+  cursor: default;
+}
+
+.kongque-codex__entry.is-locked {
+  color: var(--color-ink-soft);
+  background: rgb(32 27 24 / 6%);
+  border-style: dashed;
+  border-color: rgb(32 27 24 / 25%);
+}
+
+/* 卷轴回放 */
+.kongque-replay__act {
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 0.6rem;
+  background: var(--color-paper);
+  border-left: 3px solid rgb(122 96 48 / 50%);
+}
+
+.kongque-replay__act.is-ending {
+  border-left-color: var(--color-cinnabar);
+}
+
+.kongque-replay__head {
+  margin: 0 0 0.2rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.kongque-replay__text {
+  margin: 0;
+  color: var(--color-ink-soft);
+  font-size: 0.72rem;
+  line-height: 1.8;
+}
+
+/* 窄屏下工具栏按钮与结算小节的自适应 */
+@media (max-width: 680px) {
+  .kongque-toolbar__aux {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.7rem;
+  }
+
+  .kongque-result__chain {
+    font-size: 0.7rem;
+  }
+}
