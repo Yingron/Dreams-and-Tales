@@ -1,3 +1,6 @@
+(function () {
+"use strict";
+
 /**
  * 游戏模块统一接口。
  *
@@ -14,7 +17,7 @@ let templateContainer = null;
  * 接口参考对象。它本身不被首页加载，仅用于展示完整契约。
  * @type {{id: 'baishe'|'kongque', name: string, init: Function, destroy: Function, pause?: Function, resume?: Function}}
  */
-export const GameModule = {
+const GameModule = {
   id: "baishe",
   name: "白蛇传",
 
@@ -48,7 +51,7 @@ export const GameModule = {
  * @param {unknown} module 待检查的模块对象。
  * @returns {true}
  */
-export function assertGameModule(module) {
+function assertGameModule(module) {
   if (!module || typeof module !== "object") {
     throw new TypeError("游戏模块必须导出一个对象。");
   }
@@ -79,7 +82,14 @@ export function assertGameModule(module) {
  * @param {object} module 游戏模块实现。
  * @returns {Readonly<object>}
  */
-export function defineGameModule(module) {
+function defineGameModule(module) {
   assertGameModule(module);
   return Object.freeze(module);
 }
+
+window.DreamsGameCore = Object.freeze({
+  GameModule,
+  assertGameModule,
+  defineGameModule,
+});
+})();

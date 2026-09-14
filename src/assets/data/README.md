@@ -5,7 +5,10 @@
 ## 文件
 
 - `baishe-cards.json`：白蛇传基础卡片清单（v1，仅 `id` / `name` / `image`）。
+- `baishe-stories.json`：白蛇传 17 条验证故事路径，含六幕编排、权威叙事文本和结局分类。
+- `baishe-cards.js` / `baishe-stories.js`：由上述 JSON 自动生成的浏览器数据镜像，供直接双击 `index.html` 时使用；修改 JSON 后运行 `tools/sync-baishe-data.ps1` 同步。
 - `kongque-cards.json`：孔雀东南飞完整游戏数据（v2），含卡片、规则、关卡、结局与评分参数。内容全部来自《孔雀东南飞传说》故事拼图游戏内容策划书 V1.0，代码中不写任何剧情文字。
+- `kongque-cards.js`：由同名 JSON 自动生成的浏览器数据镜像，供直接双击 `index.html` 时使用；修改 JSON 后运行 `tools/sync-kongque-data.ps1` 同步。
 
 ## kongque-cards.json 结构
 

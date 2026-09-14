@@ -144,6 +144,15 @@
       <p class="noscript-message">请启用 JavaScript 以进入“奇谭织梦”互动页面。</p>
     </noscript>
 
-    <script type="module" src="./src/js/main.js"></script>
+    <!-- 按依赖顺序加载普通脚本，使直接双击 index.html 与静态服务器均可使用。 -->
+    <script defer src="./src/assets/data/kongque-cards.js"></script>
+    <script defer src="./src/assets/data/baishe-cards.js"></script>
+    <script defer src="./src/assets/data/baishe-stories.js"></script>
+    <script defer src="./src/js/game-template.js"></script>
+    <script defer src="./src/js/router.js"></script>
+    <script defer src="./src/js/baishe-narrative.js"></script>
+    <script defer src="./src/js/baishe.js"></script>
+    <script defer src="./src/js/kongque.js"></script>
+    <script defer src="./src/js/main.js"></script>
   </body>
 </html>
