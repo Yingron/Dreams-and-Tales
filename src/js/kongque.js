@@ -1,4 +1,7 @@
-import { defineGameModule } from "./game-template.js";
+(function () {
+"use strict";
+
+const { defineGameModule } = window.DreamsGameCore;
 
 // —— 模块内部状态（README 建议⑤：游戏状态封闭在模块内，不写入 main.js）——
 let mountedContainer = null;
@@ -25,7 +28,7 @@ let replayScrollId = null; // 正在回放的卷轴 id
 let scrollNote = ""; // 卷轴保存成功后的临时提示
 
 // 数据文件地址随模块位置解析，不在代码中写死相对 HTML 的路径。
-const DATA_URL = new URL("../assets/data/kongque-cards.json", import.meta.url);
+const DATA_URL = new URL("./src/assets/data/kongque-cards.json", document.baseURI);
 const CARD_KINDS = ["scene", "character", "event"];
 // 死亡/葬化类终结事件：有人死亡后，只允许这些事件继续出现（策划书 5.1 规则 7）。
 const FINAL_EVENTS = ["E13", "E14", "E15"];
@@ -104,6 +107,12 @@ function restoreDraft(level) {
  * @returns {Promise<object>}
  */
 async function loadCards() {
+  // 直接双击 index.html 时，浏览器会禁止 file:// 页面 fetch 本地 JSON。
+  // 构建时生成的同内容脚本为这种场景提供数据；HTTP 部署仍可回退到 JSON。
+  if (window.KONGQUE_DATA) {
+    return window.KONGQUE_DATA;
+  }
+
   const response = await fetch(DATA_URL);
   if (!response.ok) {
     throw new Error(`卡片数据载入失败：${response.status}`);
@@ -2407,7 +2416,7 @@ function handleChange(event) {
 }
 
 /** 孔雀东南飞游戏模块。 */
-export default defineGameModule({
+const kongqueModule = defineGameModule({
   id: "kongque",
   name: "孔雀东南飞",
 
@@ -2518,3 +2527,7 @@ export default defineGameModule({
     }
   },
 });
+
+window.DreamsGames = window.DreamsGames || {};
+window.DreamsGames.kongque = kongqueModule;
+})();

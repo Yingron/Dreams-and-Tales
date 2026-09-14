@@ -1,9 +1,12 @@
+(function () {
+"use strict";
+
 /**
  * 单页路由控制器。
  * 路由写入 URL hash，因此可直接部署到 GitHub Pages，无需服务器重写规则。
  */
 
-export const ROUTES = Object.freeze({
+const ROUTES = Object.freeze({
   HOME: "home",
   BAISHE: "baishe",
   KONGQUE: "kongque",
@@ -30,7 +33,7 @@ function routeFromHash(hash) {
  * 创建一个可订阅的轻量路由器。
  * @returns {{start: Function, stop: Function, navigate: Function, subscribe: Function, getRoute: Function}}
  */
-export function createRouter() {
+function createRouter() {
   const listeners = new Set();
   let currentRoute = routeFromHash(window.location.hash);
   let started = false;
@@ -94,3 +97,6 @@ export function createRouter() {
     },
   };
 }
+
+window.DreamsRouter = Object.freeze({ ROUTES, createRouter });
+})();

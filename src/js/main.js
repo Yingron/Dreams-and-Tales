@@ -1,5 +1,8 @@
-import { assertGameModule } from "./game-template.js";
-import { createRouter, ROUTES } from "./router.js";
+(function () {
+"use strict";
+
+const { assertGameModule } = window.DreamsGameCore;
+const { createRouter, ROUTES } = window.DreamsRouter;
 
 const homeView = document.querySelector("#home-view");
 const gameView = document.querySelector("#game-view");
@@ -7,8 +10,8 @@ const gameContainer = document.querySelector("#game-container");
 const gameTitle = document.querySelector("#game-view-title");
 
 const moduleLoaders = Object.freeze({
-  [ROUTES.BAISHE]: () => import("./baishe.js"),
-  [ROUTES.KONGQUE]: () => import("./kongque.js"),
+  [ROUTES.BAISHE]: () => Promise.resolve({ default: window.DreamsGames.baishe }),
+  [ROUTES.KONGQUE]: () => Promise.resolve({ default: window.DreamsGames.kongque }),
 });
 
 const router = createRouter();
@@ -139,3 +142,4 @@ router.subscribe((route) => {
   void renderRoute(route);
 });
 router.start();
+})();

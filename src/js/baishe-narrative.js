@@ -1,3 +1,6 @@
+(function () {
+"use strict";
+
 /**
  * 白蛇传叙事引擎。
  *
@@ -10,13 +13,13 @@
  *   S6: A 塔外凝望、B 塔内被囚
  */
 
-export const SCENE_IDS = Object.freeze(["S1", "S2", "S3", "S4", "S5", "S6"]);
-export const CHARACTER_IDS = Object.freeze(["C1", "C2", "C3", "C4"]);
-export const CLASSIC_ORDER = Object.freeze(["S1", "S2", "S3", "S4", "S5", "S6"]);
-export const ROW_COUNT = 6;
+const SCENE_IDS = Object.freeze(["S1", "S2", "S3", "S4", "S5", "S6"]);
+const CHARACTER_IDS = Object.freeze(["C1", "C2", "C3", "C4"]);
+const CLASSIC_ORDER = Object.freeze(["S1", "S2", "S3", "S4", "S5", "S6"]);
+const ROW_COUNT = 6;
 
 /** 每个场景下三个角色槽位的顺序语义标签（空字符串表示该槽不承担独立角色）。 */
-export const SCENE_ROLES = Object.freeze({
+const SCENE_ROLES = Object.freeze({
   S1: ["撑伞者", "接伞者", ""],
   S2: ["目击者", "现形者", ""],
   S3: ["盗草者", "", ""],
@@ -30,7 +33,7 @@ export const SCENE_ROLES = Object.freeze({
 // ---------------------------------------------------------------------------
 
 /** 新建空台面：六幕固定行，每行一个场景槽与三个角色槽。 */
-export function createEmptyState() {
+function createEmptyState() {
   return {
     scenes: Array.from({ length: ROW_COUNT }, () => ({
       sceneId: null,
@@ -40,7 +43,7 @@ export function createEmptyState() {
 }
 
 /** 把已验证路径的场景数据转换成台面状态（用于预填与测试）。 */
-export function storyToState(story) {
+function storyToState(story) {
   const state = createEmptyState();
   story.scenes.forEach((entry, index) => {
     state.scenes[index].sceneId = entry.scene;
@@ -53,7 +56,7 @@ export function storyToState(story) {
   return state;
 }
 
-export function cloneState(state) {
+function cloneState(state) {
   return {
     scenes: state.scenes.map((row) => ({
       sceneId: row.sceneId,
@@ -68,7 +71,7 @@ export function cloneState(state) {
  * 并保证四名角色全部至少出场一次。
  * @param {() => number} [rng] 随机数函数，默认 Math.random，便于测试注入。
  */
-export function createRandomState(rng = Math.random) {
+function createRandomState(rng = Math.random) {
   const state = createEmptyState();
 
   const sceneOrder = [...SCENE_IDS];
@@ -111,11 +114,11 @@ export function createRandomState(rng = Math.random) {
 // 卡片查询辅助
 // ---------------------------------------------------------------------------
 
-export const sceneNameOf = (cards, id) => cards.scenes.find((s) => s.id === id)?.name ?? id;
-export const sceneImageOf = (cards, id) => cards.scenes.find((s) => s.id === id)?.image ?? "";
-export const charNameOf = (cards, id) => cards.characters.find((c) => c.id === id)?.name ?? id;
-export const charImageOf = (cards, id) => cards.characters.find((c) => c.id === id)?.image ?? "";
-export const joinNames = (ids, cards) => ids.map((id) => charNameOf(cards, id)).join("、");
+const sceneNameOf = (cards, id) => cards.scenes.find((s) => s.id === id)?.name ?? id;
+const sceneImageOf = (cards, id) => cards.scenes.find((s) => s.id === id)?.image ?? "";
+const charNameOf = (cards, id) => cards.characters.find((c) => c.id === id)?.name ?? id;
+const charImageOf = (cards, id) => cards.characters.find((c) => c.id === id)?.image ?? "";
+const joinNames = (ids, cards) => ids.map((id) => charNameOf(cards, id)).join("、");
 
 // ---------------------------------------------------------------------------
 // 即时叙事生成
@@ -216,13 +219,13 @@ const SCENE_TEXT = Object.freeze({
 });
 
 /** 按槽位顺序语义生成单场叙事文本；无角色时返回 null。 */
-export function renderSceneText(sceneId, slots, cards) {
+function renderSceneText(sceneId, slots, cards) {
   const template = SCENE_TEXT[sceneId];
   return template ? template(slots, cards) : null;
 }
 
 /** 生成整台六幕的叙事文本序列。 */
-export function renderStoryTexts(state, cards) {
+function renderStoryTexts(state, cards) {
   return state.scenes.map((row) => ({
     sceneId: row.sceneId,
     text: row.sceneId ? renderSceneText(row.sceneId, row.slots, cards) : null,
@@ -239,7 +242,7 @@ const sortedKey = (ids) => [...ids].sort().join(",");
  * 判定台面是否与某条已验证路径完全一致：
  * 场景序列相等，且每个角色槽位的角色集合相等（槽内顺序不敏感）。
  */
-export function matchStoryPath(state, stories) {
+function matchStoryPath(state, stories) {
   return (
     stories.find((story) =>
       story.scenes.every((entry, index) => {
@@ -265,7 +268,7 @@ export function matchStoryPath(state, stories) {
  * 计算当前排列的柔性提示。已验证路径视为逻辑自洽，不提示。
  * @returns {{level: 'warn'|'info', text: string}[]}
  */
-export function computeHints(state, cards, matchedStory) {
+function computeHints(state, cards, matchedStory) {
   if (matchedStory) return [];
 
   const rows = state.scenes;
@@ -331,7 +334,7 @@ const GRADE_TITLES = [
   [0, "散落的丝线"],
 ];
 
-export function gradeOf(total) {
+function gradeOf(total) {
   return GRADE_TITLES.find(([min]) => total >= min)[1];
 }
 
@@ -364,7 +367,7 @@ const emptyScore = () => ({
  * 四维评分：情节完整度 / 逻辑连贯度 / 主题契合度 / 文化还原度，各 25 分。
  * 匹配已验证路径额外 +15 且保底 85 分。
  */
-export function computeScore(state, matchedStory) {
+function computeScore(state, matchedStory) {
   const rows = state.scenes;
   const usedRows = rows.filter((row) => row.sceneId);
   if (usedRows.length === 0) return emptyScore();
@@ -432,7 +435,7 @@ export function computeScore(state, matchedStory) {
  * 判定结局类型。匹配已验证路径时使用数据中的权威分类；
  * 其余按 S6 塔内被囚者（B 槽）近似推导，无 S6 或被囚者返回 null（故事未竟）。
  */
-export function deriveEndingType(state, matchedStory) {
+function deriveEndingType(state, matchedStory) {
   if (matchedStory) return matchedStory.ending;
 
   const row = state.scenes.find((r) => r.sceneId === "S6");
@@ -453,3 +456,28 @@ export function deriveEndingType(state, matchedStory) {
   if (prisoner === "C4") return "角色替换";
   return null;
 }
+
+window.BaisheNarrative = Object.freeze({
+  SCENE_IDS,
+  CHARACTER_IDS,
+  CLASSIC_ORDER,
+  ROW_COUNT,
+  SCENE_ROLES,
+  createEmptyState,
+  storyToState,
+  cloneState,
+  createRandomState,
+  sceneNameOf,
+  sceneImageOf,
+  charNameOf,
+  charImageOf,
+  joinNames,
+  renderSceneText,
+  renderStoryTexts,
+  matchStoryPath,
+  computeHints,
+  gradeOf,
+  computeScore,
+  deriveEndingType,
+});
+})();
